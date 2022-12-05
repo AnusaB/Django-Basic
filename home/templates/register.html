@@ -5,7 +5,9 @@
     <div class="row mt-3">
         <div class="col-md-6 offset-md-3">
             <div class="border bg-white p-3">
-                <ul><h3>Registration Page</h3></ul>
+                <ul>
+                    <h3>Registration Page</h3>
+                </ul>
                 <form method="POST">
                     {% csrf_token %}
                     {{form.as_p}}
