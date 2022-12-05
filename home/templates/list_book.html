@@ -1,0 +1,44 @@
+{% include 'nav.html' %}
+
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Pages</th>
+            <th>Price</th>
+            <th>Author</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        {% for b in books %}
+        <tr>
+            <td>{{b.name}}</td>
+            <td>{{b.pages}}</td>
+            <td>{{b.price}}</td>
+            <td>{{b.author}}</td>
+            <td>
+                {% if user.is_authenticated and user.is_staff and user.is_superuser %}
+                <a href="{% url 'edit-books' b.id %}">
+                    <button class="btn btn-warning">Edit</button>
+                </a>
+                {% else %}
+            <p> Only admin!</p>
+            {% endif %}
+            </td>
+            <td>
+                {% if user.is_authenticated and user.is_staff and user.is_superuser %}
+                <a href="{% url 'delete-books' b.id %}"><button class="btn btn-danger">Delete</button></a>
+                {% else %}
+            <p> Only admin!</p>
+            {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
